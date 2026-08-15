@@ -28,7 +28,7 @@ output "kendra_thesaurus_role_arn" {
 }
 output "kendra_thesaurus_source_s3_path" {
   description = "Map of source_s3_path values across all kendra_thesaurus, keyed the same as var.kendra_thesaurus"
-  value       = { for k, v in aws_kendra_thesaurus.kendra_thesaurus : k => v.source_s3_path if v.source_s3_path != null && length(v.source_s3_path) > 0 }
+  value       = { for k, v in aws_kendra_thesaurus.kendra_thesaurus : k => one(v.source_s3_path) if v.source_s3_path != null && length(v.source_s3_path) > 0 }
 }
 output "kendra_thesaurus_status" {
   description = "Map of status values across all kendra_thesaurus, keyed the same as var.kendra_thesaurus"
